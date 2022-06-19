@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul class="tabMenu">
+      <li @click="tab('1')" :class="{'active':contents === '1'}">タブ1</li>
+      <li @click="tab('2')" :class="{'active':contents === '2'}">タブ2</li>
+      <li @click="tab('3')" :class="{'active':contents === '3'}">タブ3</li>
+    </ul>
+    <div class="tabContents">
+      <div v-if="contents === '1'">コンテンツ1</div>
+      <div v-else-if="contents === '2'">コンテンツ2</div>
+      <div v-else-if="contents === '3'">コンテンツ3</div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        contents: "1"
+      },
+      methods: {
+        tab: function (num) {
+          this.contents = num;
+        }
+      }
+    })
+  </script>
+  <style>
+    #app {
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .tabMenu {
+      display: flex;
+      list-style: none;
+    }
+
+    .tabMenu li {
+      border: 1px solid #000;
+      padding: 5px 10px;
+    }
+
+    .active {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .tabContents {
+      padding-left: 40px;
+    }
+  </style>
+</body>
+
+</html>

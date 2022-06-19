@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <button @click="openWindow">開く</button>
+    <div class="modalWindow" v-show="modalWindow" @click.self="closeWindow">
+      <div class="modalContent">
+        <div class="modalInner">
+          <p class="modalText">モーダルウィンドウ</p>
+          <button @click="closeWindow">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          modalWindow: false
+        }
+      },
+      methods: {
+        openWindow: function () {
+          this.modalWindow = true
+        },
+        closeWindow: function () {
+          this.modalWindow = false
+        }
+      }
+    })
+  </script>
+
+  <style>
+    .modalWindow {
+      background-color: lightgray;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      opacity: 0.8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modalContent {
+      background-color: #fff;
+      width: 300px;
+    }
+
+    .modalInner {
+      text-align: center;
+      padding: 30px 0;
+    }
+  </style>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword">
+    <table>
+      <tr v-for="people in searchName" :key="people.id">
+        <td>{{people.name}}</td>
+      </tr>
+    </table>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        keyword: '',
+        person: [
+          { id: 1, name: '佐藤' },
+          { id: 2, name: '山田' },
+          { id: 3, name: '鈴木' },
+          { id: 4, name: '田中' }
+        ]
+      },
+      computed: {
+        searchName: function () {
+          let person = [];
+          for (let i in this.person) {
+            let people = this.person[i];
+            if (people.name.indexOf(this.keyword) !== -1) {
+              person.push(people);
+            }
+          }
+          return person;
+        }
+      }
+
+    })
+  </script>
+
+</body>
+
+</html>
